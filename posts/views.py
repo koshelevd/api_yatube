@@ -20,8 +20,8 @@ class ResourcePermission(BasePermission):
         """
         Override has_object_permission method.
 
-        Return True if authorized user is owner of the resource or if method is
-        safe.
+        Return True if authorized user is owner of the resource or if method
+        is safe.
         """
         return request.user == obj.author or request.method in SAFE_METHODS
 
