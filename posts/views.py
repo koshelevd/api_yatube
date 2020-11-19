@@ -15,6 +15,7 @@ class ResourcePermission(BasePermission):
 
     Check resource's ownership and method's safety.
     """
+
     def has_object_permission(self, request, view, obj):
         """
         Override has_object_permission method.
@@ -29,6 +30,7 @@ class PostViewSet(viewsets.ModelViewSet):
     """
     Viewset for 'models.Post' model.
     """
+
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (ResourcePermission, IsAuthenticated)
@@ -46,6 +48,7 @@ class CommentViewSet(viewsets.ModelViewSet):
     """
     Viewset for 'models.Comment' model.
     """
+
     serializer_class = CommentSerializer
     permission_classes = (ResourcePermission, IsAuthenticated)
 
