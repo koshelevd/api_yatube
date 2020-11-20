@@ -9,11 +9,11 @@ from .views import PostViewSet, CommentViewSet
 
 router = DefaultRouter()
 
-router.register('api/v1/posts', PostViewSet)
-router.register(r'api/v1/posts/(?P<post_id>.+)/comments', CommentViewSet,
+router.register('posts', PostViewSet)
+router.register('posts/(?P<post_id>.+)/comments', CommentViewSet,
                 basename='comments')
 
 urlpatterns = [
-    path('api/v1/api-token-auth/', views.obtain_auth_token),
-    path('', include(router.urls)),
+    path('v1/api-token-auth/', views.obtain_auth_token),
+    path('v1/', include(router.urls)),
 ]

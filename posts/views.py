@@ -1,29 +1,11 @@
 """View classes of the 'posts' app."""
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
-from rest_framework.permissions import (BasePermission, IsAuthenticated,
-                                        SAFE_METHODS)
 
 
 from .models import Post
 from .serializers import PostSerializer, CommentSerializer
-
-
-class ResourcePermission(BasePermission):
-    """
-    Permission class.
-
-    Check resource's ownership and method's safety.
-    """
-
-    def has_object_permission(self, request, view, obj):
-        """
-        Override has_object_permission method.
-
-        Return True if authorized user is owner of the resource or if method
-        is safe.
-        """
-        return request.user == obj.author or request.method in SAFE_METHODS
+from .permissions import ResourcePermission, IsAuthenticated
 
 
 class PostViewSet(viewsets.ModelViewSet):

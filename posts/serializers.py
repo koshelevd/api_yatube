@@ -10,12 +10,13 @@ class PostSerializer(serializers.ModelSerializer):
     'ModelSerializer' for 'models.Post' objects.
     """
 
-    author = serializers.ReadOnlyField(source='author.username')
+    author = serializers.SlugRelatedField(slug_field='username',
+                                          read_only=True)
 
     class Meta:
         """Adds meta-information."""
 
-        fields = ('id', 'text', 'author', 'image', 'pub_date')
+        fields = '__all__'
         model = Post
 
 
@@ -25,11 +26,12 @@ class CommentSerializer(serializers.ModelSerializer):
     'ModelSerializer' for 'models.Comment' objects.
     """
 
-    author = serializers.ReadOnlyField(source='author.username')
+    author = serializers.SlugRelatedField(slug_field='username',
+                                          read_only=True)
 
     class Meta:
         """Adds meta-information."""
 
-        fields = ('id', 'text', 'author', 'post', 'created')
+        fields = '__all__'
         read_only_fields = ('author', 'post')
         model = Comment
